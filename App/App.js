@@ -1,18 +1,60 @@
+import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export default function App() {
+  const[aniversario, setAniversario] = useState('');
+  const[signo, setSigno] = useState('');
+
+  // Função para descrobir o Signo
+  const descobrirSigno = (data) => {
+    const partes = data.split('/');
+    if(partes.length !== 2) return 'Data Invalida!'
+
+    const dia = parseInt(partes[0]);
+    const mes = parseInt(partes[1]);
+
+    if(isNaN(dia) || isNaN(mes)) return 'Data Invalida!'
+
+    // Mês e dia dos signos
+    if((mes === 3 && dia >= 21) || (mes === 4 && dia <= 19)) return 'Áries';
+    if((mes === 4 && dia >= 20) || (mes === 5 && dia <= 20)) return 'Touro';
+    if ((mes === 5 && dia >= 21) || (mes === 6 && dia <= 20)) return 'Gêmeos';
+    if ((mes === 6 && dia >= 21) || (mes === 7 && dia <= 22)) return 'Câncer';
+    if ((mes === 7 && dia >= 23) || (mes === 8 && dia <= 22)) return 'Leão';
+    if ((mes === 8 && dia >= 23) || (mes === 9 && dia <= 22)) return 'Virgem';
+    if ((mes === 9 && dia >= 23) || (mes === 10 && dia <= 22)) return 'Libra';
+    if ((mes === 10 && dia >= 23) || (mes === 11 && dia <= 21)) return 'Escorpião';
+    if ((mes === 11 && dia >= 22) || (mes === 12 && dia <= 21)) return 'Sagitário';
+    if ((mes === 12 && dia >= 22) || (mes === 1 && dia <= 19)) return 'Capricórnio';
+    if ((mes === 1 && dia >= 20) || (mes === 2 && dia <= 18)) return 'Aquário';
+    if ((mes === 2 && dia >= 19) || (mes === 3 && dia <= 20)) return 'Peixes';
+
+    return 'Data inválida';
+  }
+
+  // Função para adicionar
+  const adicionar = () => {
+    const resultado = descobrirSigno(aniversario);
+    setSigno(resultado);
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>App Zodíaco</Text>
         <View style={{ margin: 10 }}>
           <Text style={{ fontWeight: 'bold', fontSize: 17 }}>Data de aniversário</Text>
-          <TextInput style={styles.input} placeholder='Digite seu aniversário' keyboardType='numeric'/>
-          <TouchableOpacity style={styles.botao}>
+          <TextInput 
+            style={styles.input} 
+            placeholder='Digite seu aniversário (DD/MM)' 
+            keyboardType='numeric'
+            value={aniversario}
+            onChangeText={setAniversario}
+          />
+          <TouchableOpacity style={styles.botao} onPress={adicionar}>
             <Text style={{ color: "#FFF", fontSize: 18 }}>Adicionar</Text>
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 10 }}>
-          <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Nome</Text>
+          <Text style={styles.subTitulo}>{signo ? `Signo: ${signo}` : 'Nome'}</Text>
         </View>
     </View>
   );
@@ -45,5 +87,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#292929",
     marginTop: 10
+  },
+  subTitulo: {
+    fontSize: 25, 
+    fontWeight: 'bold', 
+    textAlign: 'center'
   }
 });
