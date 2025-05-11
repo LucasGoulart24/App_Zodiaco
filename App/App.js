@@ -18,16 +18,16 @@ export default function App() {
     // Mês e dia dos signos
     if((mes === 3 && dia >= 21) || (mes === 4 && dia <= 19)) return 'Áries';
     if((mes === 4 && dia >= 20) || (mes === 5 && dia <= 20)) return 'Touro';
-    if ((mes === 5 && dia >= 21) || (mes === 6 && dia <= 20)) return 'Gêmeos';
-    if ((mes === 6 && dia >= 21) || (mes === 7 && dia <= 22)) return 'Câncer';
-    if ((mes === 7 && dia >= 23) || (mes === 8 && dia <= 22)) return 'Leão';
-    if ((mes === 8 && dia >= 23) || (mes === 9 && dia <= 22)) return 'Virgem';
-    if ((mes === 9 && dia >= 23) || (mes === 10 && dia <= 22)) return 'Libra';
-    if ((mes === 10 && dia >= 23) || (mes === 11 && dia <= 21)) return 'Escorpião';
-    if ((mes === 11 && dia >= 22) || (mes === 12 && dia <= 21)) return 'Sagitário';
-    if ((mes === 12 && dia >= 22) || (mes === 1 && dia <= 19)) return 'Capricórnio';
-    if ((mes === 1 && dia >= 20) || (mes === 2 && dia <= 18)) return 'Aquário';
-    if ((mes === 2 && dia >= 19) || (mes === 3 && dia <= 20)) return 'Peixes';
+    if((mes === 5 && dia >= 21) || (mes === 6 && dia <= 20)) return 'Gêmeos';
+    if((mes === 6 && dia >= 21) || (mes === 7 && dia <= 22)) return 'Câncer';
+    if((mes === 7 && dia >= 23) || (mes === 8 && dia <= 22)) return 'Leão';
+    if((mes === 8 && dia >= 23) || (mes === 9 && dia <= 22)) return 'Virgem';
+    if((mes === 9 && dia >= 23) || (mes === 10 && dia <= 22)) return 'Libra';
+    if((mes === 10 && dia >= 23) || (mes === 11 && dia <= 21)) return 'Escorpião';
+    if((mes === 11 && dia >= 22) || (mes === 12 && dia <= 21)) return 'Sagitário';
+    if((mes === 12 && dia >= 22) || (mes === 1 && dia <= 19)) return 'Capricórnio';
+    if((mes === 1 && dia >= 20) || (mes === 2 && dia <= 18)) return 'Aquário';
+    if((mes === 2 && dia >= 19) || (mes === 3 && dia <= 20)) return 'Peixes';
 
     return 'Data inválida';
   }
@@ -40,8 +40,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>App Zodíaco</Text>
+      <Text style={styles.texto}>Bem-vindo, você quer saber qual é o seu signo?</Text>
         <View style={{ margin: 10 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 17 }}>Data de aniversário</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 17, color: "#ffa500" }}>Data de aniversário</Text>
           <TextInput 
             style={styles.input} 
             placeholder='Digite seu aniversário (DD/MM)' 
@@ -50,7 +51,7 @@ export default function App() {
             onChangeText={setAniversario}
           />
           <TouchableOpacity style={styles.botao} onPress={adicionar}>
-            <Text style={{ color: "#FFF", fontSize: 18 }}>Adicionar</Text>
+            <Text style={{ color: "#000", fontSize: 18 }}>Adicionar</Text>
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 10 }}>
@@ -65,13 +66,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "dodgerblue"
+    backgroundColor: "#120a8f"
   },
   titulo: {
     margin: 5,
     fontSize: 40,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: "#ffa500"
+  },
+  texto: {
+    margin: 5,
+    fontSize: 15,
+    color: "#FFF"
   },
   input: {
     width: 350,
@@ -85,12 +92,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    backgroundColor: "#292929",
+    backgroundColor: "#ffa500",
     marginTop: 10
   },
   subTitulo: {
     fontSize: 25, 
     fontWeight: 'bold', 
-    textAlign: 'center'
+    textAlign: 'center',
+    color: "#ffa500"
   }
 });
